@@ -4,43 +4,101 @@
   <url>
     <loc>http://yoursite.com/2020/03/26/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E8%AE%AD%E7%BB%83/</loc>
     
-    <lastmod>2026-11-14T09:34:52.293Z</lastmod>
+    <lastmod>2026-11-14</lastmod>
     
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://yoursite.com/2020/03/25/hello-hexo/</loc>
     
-    <lastmod>2026-11-14T09:16:14.479Z</lastmod>
+    <lastmod>2026-11-14</lastmod>
     
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://yoursite.com/2020/10/26/c-%E7%9A%84%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%AD%A6%E4%B9%A0%EF%BC%881%EF%BC%89/</loc>
     
-    <lastmod>2026-11-14T09:05:00.048Z</lastmod>
+    <lastmod>2026-11-14</lastmod>
     
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://yoursite.com/2020/10/27/c-%E7%9A%84%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%AD%A6%E4%B9%A0%EF%BC%882%EF%BC%89/</loc>
     
-    <lastmod>2026-11-14T09:01:03.196Z</lastmod>
+    <lastmod>2026-11-14</lastmod>
     
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://yoursite.com/2020/10/28/c-%E7%9A%84%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%AD%A6%E4%B9%A0%EF%BC%883%EF%BC%89/</loc>
     
-    <lastmod>2026-11-14T08:56:22.784Z</lastmod>
+    <lastmod>2026-11-14</lastmod>
     
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://yoursite.com/2020/05/07/%E8%87%AA%E7%BC%96%E8%AF%91openwrt/</loc>
     
-    <lastmod>2026-11-14T08:41:51.984Z</lastmod>
+    <lastmod>2026-11-14</lastmod>
     
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
+  
+
+  <url>
+    <loc>http://yoursite.com/</loc>
+    <lastmod>2026-11-14</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  
+  <url>
+    <loc>http://yoursite.com/tags/cpp/</loc>
+    <lastmod>2026-11-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/</loc>
+    <lastmod>2026-11-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/tags/tenserflow/</loc>
+    <lastmod>2026-11-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/tags/openwrt/</loc>
+    <lastmod>2026-11-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/tags/hexo-%E6%90%AD%E5%BB%BA/</loc>
+    <lastmod>2026-11-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+
   
 </urlset>
