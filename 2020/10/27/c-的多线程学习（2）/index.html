@@ -19,7 +19,7 @@
 <meta property="og:image" content="http://yoursite.com/.com//2.png">
 <meta property="og:image" content="http://yoursite.com/.com//3.png">
 <meta property="article:published_time" content="2020-10-27T06:50:13.000Z">
-<meta property="article:modified_time" content="2026-11-14T05:50:23.320Z">
+<meta property="article:modified_time" content="2026-11-14T07:10:11.393Z">
 <meta property="article:author" content="swaggy-pgy">
 <meta property="article:tag" content="cpp">
 <meta property="article:tag" content="多线程">
@@ -173,8 +173,8 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="多线程的效率提升"><a href="#多线程的效率提升" class="headerlink" title="多线程的效率提升"></a>多线程的效率提升</h2><a id="more"></a>
-<p>　　昨天我们介绍了多线程的简单定义及使用方法，那么为什么需要多线程呢，多线程能给我们带来多大的提升呢，接下来我今天的blog主题就是探讨一下多线程对于我们的程序运行带来什么提升。</p>
-<h3 id="时间衡量"><a href="#时间衡量" class="headerlink" title="时间衡量"></a>时间衡量</h3><p>　　对于一个程序我们最直接的测量就是测量程序的运行时间。所以我们先首先定义一个测量时间标准的准则。</p>
+<p>　　昨天介绍了多线程的简单定义及使用方法，那么为什么需要多线程呢，多线程能给带来多大的提升呢，接下来今天的blog主题就是探讨一下多线程对于的程序运行带来什么提升。</p>
+<h3 id="时间衡量"><a href="#时间衡量" class="headerlink" title="时间衡量"></a>时间衡量</h3><p>　　对于一个程序最直接的测量就是测量程序的运行时间。所以先首先定义一个测量时间标准的准则。</p>
 <pre><code>template &lt;typename T&gt;
 void messure(T &amp;&amp; func)//&amp;&amp;是c++11 的特性，右值引用，目的是减少复制。
 {
@@ -184,7 +184,7 @@ void messure(T &amp;&amp; func)//&amp;&amp;是c++11 的特性，右值引用，�
     auto func_time = system_clock::now() - start_time;
     cout &lt;&lt; &quot;func finished time is :&quot; &lt;&lt; func_time.count() &lt;&lt; &quot;  us&quot; &lt;&lt; endl;
 
-}</code></pre><p>　　以上这个是十分简单的测量时间准则的函数,就是将函数完成前后的两个时间差进行相减,达到了模拟函数运行时间的测量．<br>然后我利用简单的求和函数来测试一下多线程的效果.代码如下:</p>
+}</code></pre><p>　　以上这个是十分简单的测量时间准则的函数,就是将函数完成前后的两个时间差进行相减,达到了模拟函数运行时间的测量．<br>然后利用简单的求和函数来测试一下多线程的效果.代码如下:</p>
 <pre><code>void sum(long long  start, long long end, long long&amp; ans)
 {
     long long s = 0;
@@ -194,13 +194,8 @@ void messure(T &amp;&amp; func)//&amp;&amp;是c++11 的特性，右值引用，�
     }
 
     ans = s;
-}
-
-
-int main()
-{
-
-    // 这里测量函数运行时间呢我们使用messure方法，然后载体呢就是一个lambda 函数
+}</code></pre><p>​<br>        int main()<br>        {</p>
+<pre><code>    // 这里测量函数运行时间呢使用messure方法，然后载体呢就是一个lambda 函数
     messure([]() {
         long long  ans1 = 0, ans2 = 0,ans = 0;
         long long  start = 0, end = 400000000;
@@ -223,8 +218,8 @@ int main()
     system(&quot;pause&quot;);
     return 0;
 
-}</code></pre><p>　　以上这段代码,定义了一个sum函数.然后在main函数里面利用了lambda表达式,写了这个求和的过程.第一段messure我将求和区间割裂成两段,然后创建两个线程对象,最后将得到的结果相加.第二个messure 直接粗暴的将整个区间求和.效果如下:<br><img src="/.com//1.png" alt><br>　　其实对于这个效果我认为不是十分的理想的,两个过程的时间相差没有想象中的那么大.或者是由于测试数据没有达到理想的测试效果.这里我用的是4亿,但是我测试过40亿其实时间的比例还是差不多.而且,随着数据的减少.单线程的反而是有优势了,例如4百万,4万.<br><img src="/.com//2.png" alt><br><img src="/.com//3.png" alt><br>　　这就抛出了一个有意思的问题,多线程一定比单线程快吗?</p>
-<h2 id="影响多线程的因素"><a href="#影响多线程的因素" class="headerlink" title="影响多线程的因素"></a>影响多线程的因素</h2><p>　　首先分配cpu资源的单位是进程。一个进程所获得到的cpu资源是一定的。程序在执行的过程中消耗的是cpu，比如一个单核cpu，多个线程同时执行工作时，需要不断切换执行(上下文切换)，单个线程时间耗费更多了，而单线程只是一个线程跑。<br>比如：<br>    处理10个报表，<br>    在单线程的情况下，假如说我们生成10个报表文件需要1个小时。<br>    单线程是先执行完第一个报表，用了6分钟，再执行第二个报表，也用6分钟。总计1个小时<br>    多线程，是10个报表一起执行，但是每一个报表都要1个小时。<br>    总结：多线程的总体执行时间和单线程是一样的，但是多线程中单个线程的执行时间是单线程的多倍。<br>    多线程提高的是并发数量，比如现在有一个4核cpu的服务器，同一时间可执行4个线程，这样处理线程任务的速度比较快。但是多出来的线程，5个，6个，7个，多出的线程还是要等待。</p>
+}</code></pre><p>　　以上这段代码,定义了一个sum函数.然后在main函数里面利用了lambda表达式,写了这个求和的过程.第一段messure将求和区间割裂成两段,然后创建两个线程对象,最后将得到的结果相加.第二个messure 直接粗暴的将整个区间求和.效果如下:<br><img src="/.com//1.png" alt><br>　　其实对于这个效果认为不是十分的理想的,两个过程的时间相差没有想象中的那么大.或者是由于测试数据没有达到理想的测试效果.这里用的是4亿,但是测试过40亿其实时间的比例还是差不多.而且,随着数据的减少.单线程的反而是有优势了,例如4百万,4万.<br><img src="/.com//2.png" alt><br><img src="/.com//3.png" alt><br>　　这就抛出了一个有意思的问题,多线程一定比单线程快吗?</p>
+<h2 id="影响多线程的因素"><a href="#影响多线程的因素" class="headerlink" title="影响多线程的因素"></a>影响多线程的因素</h2><p>　　首先分配cpu资源的单位是进程。一个进程所获得到的cpu资源是一定的。程序在执行的过程中消耗的是cpu，比如一个单核cpu，多个线程同时执行工作时，需要不断切换执行(上下文切换)，单个线程时间耗费更多了，而单线程只是一个线程跑。<br>比如：<br>    处理10个报表，<br>    在单线程的情况下，假如说生成10个报表文件需要1个小时。<br>    单线程是先执行完第一个报表，用了6分钟，再执行第二个报表，也用6分钟。总计1个小时<br>    多线程，是10个报表一起执行，但是每一个报表都要1个小时。<br>    总结：多线程的总体执行时间和单线程是一样的，但是多线程中单个线程的执行时间是单线程的多倍。<br>    多线程提高的是并发数量，比如现在有一个4核cpu的服务器，同一时间可执行4个线程，这样处理线程任务的速度比较快。但是多出来的线程，5个，6个，7个，多出的线程还是要等待。</p>
 <h3 id="上下文切换"><a href="#上下文切换" class="headerlink" title="上下文切换"></a>上下文切换</h3><p>　　多线程编程中一般线程的个数都大于 CPU 核心的个数，而一个 CPU 核心在任意时刻只能被一个线程使用，为了让这些线程都能得到有效执行，CPU 采取的策略是为每个线程分配时间片并轮转的形式。当一个线程的时间片用完的时候就会重新处于就绪状态让给其他线程使用，这个过程就属于一次上下文切换。</p>
 <p>　　概括来说就是：当前任务在执行完 CPU 时间片切换到另一个任务之前会先保存自己的状态，以便下次再切换会这个任务时，可以再加载这个任务的状态。任务从保存到再加载的过程就是一次上下文切换。</p>
 
@@ -488,11 +483,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">hexo 搭建</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">-个人日志</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
